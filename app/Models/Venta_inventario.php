@@ -9,9 +9,9 @@ class Venta_inventario extends Model
 {
     use HasFactory;
     public function Inventario(){
-        return $this->belongTo(Inventario::class);
+        return $this->belongsTo(Inventario::class);
     }
     public function Venta(){
-        return $this->belongTo(Venta::class);
+        return $this->belongsTo(Venta::class);
     }
 }

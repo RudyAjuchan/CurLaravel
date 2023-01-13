@@ -9,6 +9,6 @@ class Inventario extends Model
 {
     use HasFactory;
     public function Articulo(){
-        return $this->belongTo(Articulo::class);
+        return $this->belongsTo(Articulo::class);
     }
 }

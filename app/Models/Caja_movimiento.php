@@ -9,6 +9,6 @@ class Caja_movimiento extends Model
 {
     use HasFactory;
     public function Caja(){
-        return $this->belongTo(Caja::class);
+        return $this->belongsTo(Caja::class);
     }
 }

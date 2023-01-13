@@ -9,9 +9,9 @@ class Moneda_image extends Model
 {
     use HasFactory;
     public function Moneda(){
-        return $this->belongTo(Moneda::class);
+        return $this->belongsTo(Moneda::class);
     }
     public function Image(){
-        return $this->belongTo(Image::class);
+        return $this->belongsTo(Image::class);
     }
 }

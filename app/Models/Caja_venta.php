@@ -9,9 +9,9 @@ class Caja_venta extends Model
 {
     use HasFactory;
     public function Caja(){
-        return $this->belongTo(Caja::class);
+        return $this->belongsTo(Caja::class);
     }
     public function Venta(){
-        return $this->belongTo(Venta::class);
+        return $this->belongsTo(Venta::class);
     }
 }

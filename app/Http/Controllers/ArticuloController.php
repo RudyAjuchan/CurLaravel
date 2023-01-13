@@ -14,7 +14,7 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        return ["Articulos"];
+        return Articulo::where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,17 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $articulo = new Articulo();
+        $articulo->nombre = $request->nombre;
+        $articulo->barra = $request->barra;
+        $articulo->id_medida = $request->id_medida;
+        $articulo->id_marca = $request->id_marca;
+        $articulo->id_categoria = $request->id_categoria;
+        $articulo->compra = $request->compra;
+        $articulo->venta = $request->venta;
+        $articulo->stock_minimo = $request->stock_minimo;
+        $articulo->save();
+        return $articulo;
     }
 
     /**

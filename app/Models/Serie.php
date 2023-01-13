@@ -9,6 +9,6 @@ class Serie extends Model
 {
     use HasFactory;
     public function Comprobante(){
-        return $this->belongTo(Comprobante::class);
+        return $this->belongsTo(Comprobante::class);
     }
 }

@@ -9,6 +9,6 @@ class Caja extends Model
 {
     use HasFactory;
     public function Usuario(){
-        return $this->belongTo(Usuario::class);
+        return $this->belongsTo(Usuario::class);
     }
 }
