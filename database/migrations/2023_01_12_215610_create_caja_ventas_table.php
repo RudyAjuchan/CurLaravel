@@ -15,8 +15,8 @@ class CreateCajaVentasTable extends Migration
     {
         Schema::create('caja_ventas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("id_caja")->nullable()->constrained("cajas");
-            $table->foreignId("id_venta")->nullable()->constrained("ventas");
+            $table->foreignId("caja_id")->nullable()->constrained("cajas");
+            $table->foreignId("venta_id")->nullable()->constrained("ventas");
             $table->decimal("monto",10,2)->default(0);
             $table->integer("estado")->default(1);
             $table->timestamps();

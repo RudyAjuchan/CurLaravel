@@ -14,7 +14,7 @@ class ArticuloController extends Controller
      */
     public function index()
     {
-        return Articulo::where('estado',1)->get();
+        return Articulo::with(['Medida','Marca','Categoria'])->where('estado',1)->get();
     }
 
     /**
@@ -28,7 +28,7 @@ class ArticuloController extends Controller
         $articulo = new Articulo();
         $articulo->nombre = $request->nombre;
         $articulo->barra = $request->barra;
-        $articulo->id_medida = $request->id_medida;
+        $articulo->medida_id = $request->medida_id;
         $articulo->id_marca = $request->id_marca;
         $articulo->id_categoria = $request->id_categoria;
         $articulo->compra = $request->compra;

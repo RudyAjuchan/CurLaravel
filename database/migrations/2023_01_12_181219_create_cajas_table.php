@@ -15,7 +15,7 @@ class CreateCajasTable extends Migration
     {
         Schema::create('cajas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_usuario')->nullable()->constrained('usuarios');
+            $table->foreignId('usuario_id')->nullable()->constrained('usuarios');
             $table->integer('estado')->default(1);
             $table->timestamps();
         });

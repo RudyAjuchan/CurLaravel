@@ -15,8 +15,8 @@ class CreateMonedaImagesTable extends Migration
     {
         Schema::create('moneda_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_moneda')->nullable()->constrained('monedas');
-            $table->foreignId('id_imagen')->nullable()->constrained('images');
+            $table->foreignId('moneda_id')->nullable()->constrained('monedas');
+            $table->foreignId('imagen_id')->nullable()->constrained('images');
             $table->integer('estado')->default(1);
             $table->timestamps();
         });

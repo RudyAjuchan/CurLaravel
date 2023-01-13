@@ -16,7 +16,7 @@ class CreateSeriesTable extends Migration
         Schema::create('series', function (Blueprint $table) {
             $table->id();
             $table->string('serie')->nullable();
-            $table->foreignId('id_comprobante')->nullable()->constrained('comprobantes');
+            $table->foreignId('comprobante_id')->nullable()->constrained('comprobantes');
             $table->integer('estado')->default(1);
             $table->timestamps();
         });

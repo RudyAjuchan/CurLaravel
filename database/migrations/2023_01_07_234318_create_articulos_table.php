@@ -17,9 +17,9 @@ class CreateArticulosTable extends Migration
             $table->id();
             $table->string('nombre')->nullable();
             $table->string('barra')->nullable();
-            $table->foreignId('id_medida')->nullable()->constrained('medidas');            
-            $table->foreignId('id_marca')->nullable()->constrained('marcas');
-            $table->foreignId('id_categoria')->nullable()->constrained('categorias');
+            $table->foreignId('medida_id')->nullable()->constrained('medidas');            
+            $table->foreignId('marca_id')->nullable()->constrained('marcas');
+            $table->foreignId('categoria_id')->nullable()->constrained('categorias');
             $table->decimal('compra',8,2)->default(0);
             $table->decimal('venta',8,2)->default(0);
             $table->decimal('stock_minimo',8,2)->default(0);

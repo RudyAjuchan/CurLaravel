@@ -15,8 +15,8 @@ class CreateCompraInventariosTable extends Migration
     {
         Schema::create('compra_inventarios', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_inventario')->nullable()->constrained('inventarios');
-            $table->foreignId('id_compra')->nullable()->constrained('compras');
+            $table->foreignId('inventario_id')->nullable()->constrained('inventarios');
+            $table->foreignId('compra_id')->nullable()->constrained('compras');
             $table->decimal('precio',8,2)->default(0);
             $table->decimal('cantidad',8,2)->default(0);
             $table->integer('estado')->default(1);
