@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMonedaImagesTable extends Migration
+class CreateCajaMovimientosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateMonedaImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('moneda_images', function (Blueprint $table) {
+        Schema::create('caja_movimientos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('moneda_id')->nullable()->constrained('monedas');
-            $table->foreignId('image_id')->nullable()->constrained('images');
+            $table->foreignId('caja_id')->nullable()->constrained('cajas');
+            $table->integer('tipo');
+            $table->decimal('monto',10,2)->default(0);
+            $table->text('motivo')->nullable();
             $table->integer('estado')->default(1);
             $table->timestamps();
         });
@@ -29,6 +31,6 @@ class CreateMonedaImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('moneda_images');
+        Schema::dropIfExists('caja_movimientos');
     }
 }

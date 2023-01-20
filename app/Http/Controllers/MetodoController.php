@@ -14,7 +14,7 @@ class MetodoController extends Controller
      */
     public function index()
     {
-        return ["metodos"];
+        return Metodo::where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,10 @@ class MetodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $metodo = new Metodo();
+        $metodo->nombre = $request->nombre;
+        $metodo->save();
+        return $metodo;
     }
 
     /**
@@ -36,7 +39,7 @@ class MetodoController extends Controller
      */
     public function show(Metodo $metodo)
     {
-        //
+        return $metodo;
     }
 
     /**
@@ -48,7 +51,9 @@ class MetodoController extends Controller
      */
     public function update(Request $request, Metodo $metodo)
     {
-        //
+        $metodo->nombre = $request->nombre;
+        $metodo->save();
+        return $metodo;
     }
 
     /**
@@ -59,6 +64,7 @@ class MetodoController extends Controller
      */
     public function destroy(Metodo $metodo)
     {
-        //
+        $metodo->estado = 0;
+        $metodo->save();        
     }
 }

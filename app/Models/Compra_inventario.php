@@ -12,6 +12,6 @@ class Compra_inventario extends Model
         return $this->belongsTo(Inventario::class);
     }
     public function Compra(){
-        return $this->belongsTo(compras::class);
+        return $this->belongsTo(Compra::class);
     }
 }

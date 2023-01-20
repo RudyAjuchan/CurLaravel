@@ -14,7 +14,7 @@ class VentaInventarioController extends Controller
      */
     public function index()
     {
-        return ["Venta inventario"];
+        return Venta_inventario::with(['Inventario','Venta'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,13 @@ class VentaInventarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venta_inventario = new Venta_inventario();
+        $venta_inventario->inventario_id = $request->inventario_id;
+        $venta_inventario->venta_id = $request->venta_id;
+        $venta_inventario->precio = $request->precio;
+        $venta_inventario->cantidad = $request->cantidad;
+        $venta_inventario->save();
+        return $venta_inventario;
     }
 
     /**
@@ -36,7 +42,9 @@ class VentaInventarioController extends Controller
      */
     public function show(Venta_inventario $venta_inventario)
     {
-        //
+        $venta_inventario->inventario = $venta_inventario->Inventario;
+        $venta_inventario->venta = $venta_inventario->Venta;
+        return $venta_inventario;
     }
 
     /**
@@ -48,7 +56,12 @@ class VentaInventarioController extends Controller
      */
     public function update(Request $request, Venta_inventario $venta_inventario)
     {
-        //
+        $venta_inventario->inventario_id = $request->inventario_id;
+        $venta_inventario->venta_id = $request->venta_id;
+        $venta_inventario->precio = $request->precio;
+        $venta_inventario->cantidad = $request->cantidad;
+        $venta_inventario->save();
+        return $venta_inventario;
     }
 
     /**
@@ -59,6 +72,7 @@ class VentaInventarioController extends Controller
      */
     public function destroy(Venta_inventario $venta_inventario)
     {
-        //
+        $venta_inventario->estado = 0;
+        $venta_inventario->save();
     }
 }

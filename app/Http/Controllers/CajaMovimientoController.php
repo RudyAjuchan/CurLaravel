@@ -14,7 +14,7 @@ class CajaMovimientoController extends Controller
      */
     public function index()
     {
-        return ['Caja movimientos'];
+        return Caja_movimiento::with(['Caja'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,13 @@ class CajaMovimientoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $caja_movimiento = new Caja_movimiento();
+        $caja_movimiento->caja_id = $request->caja_id;
+        $caja_movimiento->tipo = $request->tipo;
+        $caja_movimiento->monto = $request->monto;
+        $caja_movimiento->motivo = $request->motivo;
+        $caja_movimiento->save();
+        return $caja_movimiento;
     }
 
     /**
@@ -36,7 +42,8 @@ class CajaMovimientoController extends Controller
      */
     public function show(Caja_movimiento $caja_movimiento)
     {
-        //
+        $caja_movimiento->Caja;
+        return $caja_movimiento;
     }
 
     /**
@@ -48,7 +55,12 @@ class CajaMovimientoController extends Controller
      */
     public function update(Request $request, Caja_movimiento $caja_movimiento)
     {
-        //
+        $caja_movimiento->caja_id = $request->caja_id;
+        $caja_movimiento->tipo = $request->tipo;
+        $caja_movimiento->monto = $request->monto;
+        $caja_movimiento->motivo = $request->motivo;
+        $caja_movimiento->save();
+        return $caja_movimiento;
     }
 
     /**
@@ -59,6 +71,7 @@ class CajaMovimientoController extends Controller
      */
     public function destroy(Caja_movimiento $caja_movimiento)
     {
-        //
+        $caja_movimiento->estado = 0;
+        $caja_movimiento->save();
     }
 }

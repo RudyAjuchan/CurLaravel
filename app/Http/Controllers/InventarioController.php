@@ -14,7 +14,7 @@ class InventarioController extends Controller
      */
     public function index()
     {
-        return ["Inventarios"];
+        return Inventario::with(['Articulo'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,15 @@ class InventarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $inventario = new Inventario();
+        $inventario->articulo_id = $request->articulo_id;
+        $inventario->compra = $request->compra;
+        $inventario->venta = $request->venta;
+        $inventario->cantidad = $request->cantidad;
+        $inventario->tipo = $request->tipo;
+        $inventario->motivo = $request->motivo;
+        $inventario->save();
+        return $inventario;
     }
 
     /**
@@ -36,7 +44,8 @@ class InventarioController extends Controller
      */
     public function show(Inventario $inventario)
     {
-        //
+        $inventario->articulo = $inventario->Articulo;
+        return $inventario;
     }
 
     /**
@@ -48,7 +57,14 @@ class InventarioController extends Controller
      */
     public function update(Request $request, Inventario $inventario)
     {
-        //
+        $inventario->articulo_id = $request->articulo_id;
+        $inventario->compra = $request->compra;
+        $inventario->venta = $request->venta;
+        $inventario->cantidad = $request->cantidad;
+        $inventario->tipo = $request->tipo;
+        $inventario->motivo = $request->motivo;
+        $inventario->save();
+        return $inventario;
     }
 
     /**
@@ -59,6 +75,7 @@ class InventarioController extends Controller
      */
     public function destroy(Inventario $inventario)
     {
-        //
+        $inventario->estado = 0;
+        $inventario->save();
     }
 }

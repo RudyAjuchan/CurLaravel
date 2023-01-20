@@ -14,7 +14,7 @@ class VentaController extends Controller
      */
     public function index()
     {
-        return ["ventas"];
+        return Venta::where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,15 @@ class VentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $venta = new Venta();
+        $venta->total = $request->total;
+        $venta->pago = $request->pago;
+        $venta->cambio = $request->cambio;
+        $venta->tipo = $request->tipo;
+        $venta->motivo = $request->motivo;
+        $venta->cliente = $request->cliente;
+        $venta->save();
+        return $venta;
     }
 
     /**
@@ -36,7 +44,7 @@ class VentaController extends Controller
      */
     public function show(Venta $venta)
     {
-        //
+        return $venta;
     }
 
     /**
@@ -48,7 +56,14 @@ class VentaController extends Controller
      */
     public function update(Request $request, Venta $venta)
     {
-        //
+        $venta->total = $request->total;
+        $venta->pago = $request->pago;
+        $venta->cambio = $request->cambio;
+        $venta->tipo = $request->tipo;
+        $venta->motivo = $request->motivo;
+        $venta->cliente = $request->cliente;
+        $venta->save();
+        return $venta;
     }
 
     /**
@@ -59,6 +74,7 @@ class VentaController extends Controller
      */
     public function destroy(Venta $venta)
     {
-        //
+        $venta->estado = 0;
+        $venta->save();
     }
 }

@@ -14,7 +14,7 @@ class ImageController extends Controller
      */
     public function index()
     {
-        return ['Imagenes'];
+        return Image::where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,10 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $image = new Image();
+        $image->path = $request->path;
+        $image->save();
+        return $image;
     }
 
     /**
@@ -36,7 +39,7 @@ class ImageController extends Controller
      */
     public function show(Image $image)
     {
-        //
+        return $image;
     }
 
     /**
@@ -48,7 +51,9 @@ class ImageController extends Controller
      */
     public function update(Request $request, Image $image)
     {
-        //
+        $image->path = $request->path;
+        $image->save();
+        return $image;
     }
 
     /**
@@ -59,6 +64,7 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $image->estado = 0;
+        $image->save();
     }
 }

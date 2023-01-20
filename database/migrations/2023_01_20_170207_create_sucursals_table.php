@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCajaMovimientosTable extends Migration
+class CreateSucursalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateCajaMovimientosTable extends Migration
      */
     public function up()
     {
-        Schema::create('caja_movimientos', function (Blueprint $table) {
+        Schema::create('sucursals', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_caja')->nullable()->constrained('cajas');
-            $table->integer('tipo');
-            $table->decimal('monto',10,2)->default(0);
-            $table->text('motivo')->nullable();
+            $table->string('nombre')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('documento')->nullable();
+            $table->string('impresora')->nullable();
+            $table->string('impresora_url')->nullable();
             $table->integer('estado')->default(1);
             $table->timestamps();
         });
@@ -31,6 +33,6 @@ class CreateCajaMovimientosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('caja_movimientos');
+        Schema::dropIfExists('sucursals');
     }
 }

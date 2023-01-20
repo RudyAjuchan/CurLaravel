@@ -14,7 +14,7 @@ class CajaCompraController extends Controller
      */
     public function index()
     {
-        return ['Caja compras'];
+        return Caja_compra::with(['Caja','Compra'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,12 @@ class CajaCompraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $caja_compra = new Caja_compra();
+        $caja_compra->caja_id = $request->caja_id;
+        $caja_compra->compra_id = $request->compra_id;
+        $caja_compra->monto = $request->monto;
+        $caja_compra->save();
+        return $caja_compra;
     }
 
     /**
@@ -36,7 +41,9 @@ class CajaCompraController extends Controller
      */
     public function show(Caja_compra $caja_compra)
     {
-        //
+        $caja_compra->caja = $caja_compra->Caja;
+        $caja_compra->compra = $caja_compra->Compra;
+        return $caja_compra;
     }
 
     /**
@@ -48,7 +55,11 @@ class CajaCompraController extends Controller
      */
     public function update(Request $request, Caja_compra $caja_compra)
     {
-        //
+        $caja_compra->caja_id = $request->caja_id;
+        $caja_compra->compra_id = $request->compra_id;
+        $caja_compra->monto = $request->monto;
+        $caja_compra->save();
+        return $caja_compra;
     }
 
     /**
@@ -59,6 +70,7 @@ class CajaCompraController extends Controller
      */
     public function destroy(Caja_compra $caja_compra)
     {
-        //
+        $caja_compra->estado = 0;
+        $caja_compra->save();        
     }
 }

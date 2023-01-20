@@ -14,7 +14,7 @@ class MonedaImageController extends Controller
      */
     public function index()
     {
-        return ['Moneda imagen'];
+        return Moneda_image::with(['Moneda','Image'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,11 @@ class MonedaImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $moneda_image = new Moneda_image();
+        $moneda_image->moneda_id = $request->moneda_id;
+        $moneda_image->image_id = $request->image_id;
+        $moneda_image->save();
+        return $moneda_image;
     }
 
     /**
@@ -36,7 +40,9 @@ class MonedaImageController extends Controller
      */
     public function show(Moneda_image $moneda_image)
     {
-        //
+        $moneda_image->moneda = $moneda_image->Moneda;
+        $moneda_image->image = $moneda_image->Image;
+        return $moneda_image;
     }
 
     /**
@@ -48,7 +54,10 @@ class MonedaImageController extends Controller
      */
     public function update(Request $request, Moneda_image $moneda_image)
     {
-        //
+        $moneda_image->moneda_id = $request->moneda_id;
+        $moneda_image->image_id = $request->imagen_id;
+        $moneda_image->save();
+        return $moneda_image;
     }
 
     /**
@@ -59,6 +68,7 @@ class MonedaImageController extends Controller
      */
     public function destroy(Moneda_image $moneda_image)
     {
-        //
+        $moneda_image->estado = 0;        
+        $moneda_image->save();        
     }
 }

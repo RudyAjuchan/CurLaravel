@@ -14,7 +14,7 @@ class CajaVentaController extends Controller
      */
     public function index()
     {
-        return ["Caja venta"];
+        return Caja_venta::with(['Caja','Venta'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,12 @@ class CajaVentaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $caja_venta = new Caja_venta();
+        $caja_venta->caja_id = $request->caja_id;
+        $caja_venta->venta_id = $request->venta_id;
+        $caja_venta->monto = $request->monto;
+        $caja_venta->save();
+        return $caja_venta;
     }
 
     /**
@@ -36,7 +41,9 @@ class CajaVentaController extends Controller
      */
     public function show(Caja_venta $caja_venta)
     {
-        //
+        $caja_venta->caja = $caja_venta->Caja;
+        $caja_venta->venta = $caja_venta->Venta;
+        return $caja_venta;
     }
 
     /**
@@ -48,7 +55,11 @@ class CajaVentaController extends Controller
      */
     public function update(Request $request, Caja_venta $caja_venta)
     {
-        //
+        $caja_venta->caja_id = $request->caja_id;
+        $caja_venta->venta_id = $request->venta_id;
+        $caja_venta->monto = $request->monto;
+        $caja_venta->save();
+        return $caja_venta;
     }
 
     /**
@@ -59,6 +70,7 @@ class CajaVentaController extends Controller
      */
     public function destroy(Caja_venta $caja_venta)
     {
-        //
+        $caja_venta->estado = 0;
+        $caja_venta->save();
     }
 }

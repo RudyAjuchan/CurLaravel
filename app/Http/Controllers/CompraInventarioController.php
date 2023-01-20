@@ -14,7 +14,7 @@ class CompraInventarioController extends Controller
      */
     public function index()
     {
-        return ["Compra inventarios"];
+        return Compra_inventario::with(['Inventario','Compra'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,13 @@ class CompraInventarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $compra_inventario = new Compra_inventario();
+        $compra_inventario->inventario_id = $request->inventario_id;
+        $compra_inventario->compra_id = $request->compra_id;
+        $compra_inventario->precio = $request->precio;
+        $compra_inventario->cantidad = $request->cantidad;
+        $compra_inventario->save();
+        return $compra_inventario;
     }
 
     /**
@@ -36,7 +42,9 @@ class CompraInventarioController extends Controller
      */
     public function show(Compra_inventario $compra_inventario)
     {
-        //
+        $compra_inventario->inventario = $compra_inventario->Inventario;
+        $compra_inventario->compra = $compra_inventario->Compra;
+        return $compra_inventario;
     }
 
     /**
@@ -48,7 +56,12 @@ class CompraInventarioController extends Controller
      */
     public function update(Request $request, Compra_inventario $compra_inventario)
     {
-        //
+        $compra_inventario->inventario_id = $request->inventario_id;
+        $compra_inventario->compra_id = $request->compra_id;
+        $compra_inventario->precio = $request->precio;
+        $compra_inventario->cantidad = $request->cantidad;
+        $compra_inventario->save();
+        return $compra_inventario;
     }
 
     /**
@@ -59,6 +72,7 @@ class CompraInventarioController extends Controller
      */
     public function destroy(Compra_inventario $compra_inventario)
     {
-        //
+        $compra_inventario->estado = 0;
+        $compra_inventario->save();
     }
 }

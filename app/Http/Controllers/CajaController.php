@@ -14,7 +14,7 @@ class CajaController extends Controller
      */
     public function index()
     {
-        return ['Cajas'];
+        return Caja::with(['Usuario'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,10 @@ class CajaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $caja = new Caja();
+        $caja->usuario_id = $request->usuario_id;
+        $caja->save();
+        return $caja;
     }
 
     /**
@@ -36,7 +39,8 @@ class CajaController extends Controller
      */
     public function show(Caja $caja)
     {
-        //
+        $caja->usuario = $caja->Usuario;
+        return $caja;
     }
 
     /**
@@ -48,7 +52,9 @@ class CajaController extends Controller
      */
     public function update(Request $request, Caja $caja)
     {
-        //
+        $caja->usuario_id = $request->usuario_id;
+        $caja->save();
+        return $caja;
     }
 
     /**
@@ -59,6 +65,7 @@ class CajaController extends Controller
      */
     public function destroy(Caja $caja)
     {
-        //
+        $caja->estado = 0;
+        $caja->save();        
     }
 }

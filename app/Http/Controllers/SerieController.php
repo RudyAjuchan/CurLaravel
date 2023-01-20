@@ -14,7 +14,7 @@ class SerieController extends Controller
      */
     public function index()
     {
-        return ["Series"];
+        return Serie::with(['Comprobante'])->where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,11 @@ class SerieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $serie = new Serie();
+        $serie->serie = $request->serie;
+        $serie->comprobante_id = $request->comprobante_id;
+        $serie->save();
+        return $serie;
     }
 
     /**
@@ -34,9 +38,10 @@ class SerieController extends Controller
      * @param  \App\Models\Serie  $serie
      * @return \Illuminate\Http\Response
      */
-    public function show(Serie $serie)
+    public function show(Serie $series)
     {
-        //
+        $series->comprobante = $series->Comprobante;
+        return $series;
     }
 
     /**
@@ -46,9 +51,12 @@ class SerieController extends Controller
      * @param  \App\Models\Serie  $serie
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Serie $serie)
+    public function update(Request $request, Serie $series)
     {
-        //
+        $series->serie = $request->serie;
+        $series->comprobante_id = $request->comprobante_id;
+        $series->save();
+        return $series;
     }
 
     /**
@@ -57,8 +65,9 @@ class SerieController extends Controller
      * @param  \App\Models\Serie  $serie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Serie $serie)
+    public function destroy(Serie $series)
     {
-        //
+        $series->estado = 0;
+        $series->save();
     }
 }

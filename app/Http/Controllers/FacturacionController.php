@@ -14,7 +14,7 @@ class FacturacionController extends Controller
      */
     public function index()
     {
-        return ["Facturación"];
+        return Facturacion::all();
     }
 
     /**
@@ -25,7 +25,11 @@ class FacturacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $facturacion = new Facturacion();
+        $facturacion->token = $request->token;
+        $facturacion->ruta = $request->ruta;
+        $facturacion->save();
+        return $facturacion;
     }
 
     /**
@@ -36,7 +40,7 @@ class FacturacionController extends Controller
      */
     public function show(Facturacion $facturacion)
     {
-        //
+        return $facturacion;
     }
 
     /**
@@ -48,7 +52,10 @@ class FacturacionController extends Controller
      */
     public function update(Request $request, Facturacion $facturacion)
     {
-        //
+        $facturacion->token = $request->token;
+        $facturacion->ruta = $request->ruta;
+        $facturacion->save();
+        return $facturacion;
     }
 
     /**
@@ -58,7 +65,7 @@ class FacturacionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Facturacion $facturacion)
-    {
-        //
+    {        
+        
     }
 }

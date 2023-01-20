@@ -12,6 +12,6 @@ class Caja_compra extends Model
         return $this->belongsTo(Caja::class);
     }
     public function Compra(){
-        return $this->belongsTo(compras::class);
+        return $this->belongsTo(Compra::class);
     }
 }

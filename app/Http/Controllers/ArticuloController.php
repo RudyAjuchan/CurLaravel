@@ -29,8 +29,8 @@ class ArticuloController extends Controller
         $articulo->nombre = $request->nombre;
         $articulo->barra = $request->barra;
         $articulo->medida_id = $request->medida_id;
-        $articulo->id_marca = $request->id_marca;
-        $articulo->id_categoria = $request->id_categoria;
+        $articulo->marca_id = $request->marca_id;
+        $articulo->categoria_id = $request->categoria_id;
         $articulo->compra = $request->compra;
         $articulo->venta = $request->venta;
         $articulo->stock_minimo = $request->stock_minimo;
@@ -46,7 +46,10 @@ class ArticuloController extends Controller
      */
     public function show(Articulo $articulo)
     {
-        //
+        $articulo->medida = $articulo->Medida;
+        $articulo->marca = $articulo->Marca;        
+        $articulo->categoria = $articulo->Categoria;
+        return $articulo;
     }
 
     /**
@@ -58,7 +61,16 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, Articulo $articulo)
     {
-        //
+        $articulo->nombre = $request->nombre;
+        $articulo->barra = $request->barra;
+        $articulo->medida_id = $request->medida_id;
+        $articulo->marca_id = $request->marca_id;
+        $articulo->categoria_id = $request->categoria_id;
+        $articulo->compra = $request->compra;
+        $articulo->venta = $request->venta;
+        $articulo->stock_minimo = $request->stock_minimo;
+        $articulo->save();
+        return $articulo;
     }
 
     /**
@@ -69,6 +81,7 @@ class ArticuloController extends Controller
      */
     public function destroy(Articulo $articulo)
     {
-        //
+        $articulo->estado = 0;
+        $articulo->save();
     }
 }

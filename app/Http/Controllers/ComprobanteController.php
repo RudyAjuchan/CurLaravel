@@ -14,7 +14,7 @@ class ComprobanteController extends Controller
      */
     public function index()
     {
-        return ['comprobantes'];
+        return Comprobante::where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,11 @@ class ComprobanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comprobante = new Comprobante();
+        $comprobante->nombre = $request->nombre;
+        $comprobante->codigo = $request->codigo;
+        $comprobante->save();
+        return $comprobante;
     }
 
     /**
@@ -36,7 +40,7 @@ class ComprobanteController extends Controller
      */
     public function show(Comprobante $comprobante)
     {
-        //
+        return $comprobante;
     }
 
     /**
@@ -48,7 +52,10 @@ class ComprobanteController extends Controller
      */
     public function update(Request $request, Comprobante $comprobante)
     {
-        //
+        $comprobante->nombre = $request->nombre;
+        $comprobante->codigo = $request->codigo;
+        $comprobante->save();
+        return $comprobante;
     }
 
     /**
@@ -58,7 +65,8 @@ class ComprobanteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comprobante $comprobante)
-    {
-        //
+    {        
+        $comprobante->estado = 0;
+        $comprobante->save();
     }
 }

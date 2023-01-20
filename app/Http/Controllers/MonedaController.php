@@ -14,7 +14,7 @@ class MonedaController extends Controller
      */
     public function index()
     {
-        return ["Monedas"];
+        return Moneda::where('estado',1)->get();
     }
 
     /**
@@ -25,7 +25,10 @@ class MonedaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $moneda = new Moneda();
+        $moneda->monto = $request->monto;
+        $moneda->save();
+        return $moneda;
     }
 
     /**
@@ -36,7 +39,7 @@ class MonedaController extends Controller
      */
     public function show(Moneda $moneda)
     {
-        //
+        return $moneda;
     }
 
     /**
@@ -48,7 +51,9 @@ class MonedaController extends Controller
      */
     public function update(Request $request, Moneda $moneda)
     {
-        //
+        $moneda->monto = $request->monto;
+        $moneda->save();
+        return $moneda;
     }
 
     /**
@@ -59,6 +64,7 @@ class MonedaController extends Controller
      */
     public function destroy(Moneda $moneda)
     {
-        //
+        $moneda->estado=0;
+        $moneda->save();
     }
 }
